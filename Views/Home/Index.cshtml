@@ -26,11 +26,74 @@
     <script src="kendo/js/kendo.all.min.js"></script>
 </head>
 <body>
-    <input id="datepicker" />
+    <form method="POST">
+    <input required id="datepicker" name="dateTime" />
+    <textarea required name="description"></textarea>
+     <input required id="shop"  name="shopName" />
+    <button type="button" class="buttonAdd" onclick="addItem()">Добавить</button>
+
+    <div id="section">
+        
+    </div>
+    <button type="submit">Отправить</button>
+    </form>
+
+   
+   
+
+    <script id="purchase-template" type="text/x-kendo-template">
+    <div>
+        <input required class="items" name="itemName" />
+         <input required name="itemCost" placeholder="Цена" type="number"/>
+         <input required name="itemCount" placeholder="Количество" type="number"/>
+           <button type="button" class="buttonRemove" onclick="removeItem(this)">Удалить</button>
+          </br>
+           
+          </div>
+        <script>
+         $(".items:last").kendoAutoComplete({
+                        dataSource: {
+                            transport: {
+                                read: "/api/items"
+                            }
+                        },
+                        dataTextField: "name",
+                        filter: "contains",
+                        placeholder: "Выберите предмет",
+                    });
+        </script>
+   
+    </script>
+
     <script>
-    $(function() {
-        $("#datepicker").kendoDatePicker();
-    });
+
+         var template = kendo.template($("#purchase-template").html());
+
+        function addItem(){
+            $("#section").append(template);
+        }
+
+        function removeItem(event){
+           $(event).parent().remove();
+        }
+
+
+        $(document).ready(function () {
+           
+
+            $("#datepicker").kendoDatePicker();
+            $("#shop").kendoAutoComplete({
+                        dataSource: {
+                            transport: {
+                                read: "/api/shops"
+                            }
+                        },
+                        dataTextField: "name",
+                        filter: "contains",
+                        placeholder: "Выберите Магазин",
+                    });
+
+        });
     </script>
 </body>
 </html>

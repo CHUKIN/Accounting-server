@@ -11,9 +11,10 @@ using System;
 namespace Accountingserver.Migrations
 {
     [DbContext(typeof(AccountingContext))]
-    partial class AccountingContextModelSnapshot : ModelSnapshot
+    [Migration("20171022212543_ChangePrice")]
+    partial class ChangePrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,6 +102,8 @@ namespace Accountingserver.Migrations
                 {
                     b.Property<int>("ShopId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City");
 
                     b.Property<string>("Name");
 

@@ -15,7 +15,6 @@ namespace Accounting_server
         public int ItemId {get;set;}  
         public Item Item {get;set;}
         public decimal Count {get;set;}
-        public bool Discount {get;set;}
         public int PriceId {get;set;}
         public Price Price {get;set;}
     }

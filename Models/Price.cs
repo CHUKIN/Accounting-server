@@ -12,6 +12,7 @@ namespace Accounting_server
         public Item Item {get;set;}
         public int ShopId {get;set;}
         public Shop Shop {get;set;}
+        public bool Discount {get;set;}
         public List<PurchaseItem> PurchaseItems {get;set;}
     }
 }
