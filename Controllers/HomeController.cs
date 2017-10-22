@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
  
-namespace EmptyApp.Controllers
+namespace Accounting_server.Controllers
 {
     public class HomeController : Controller
     {
