@@ -20,7 +20,7 @@ namespace Accounting_server.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string shopName, DateTime dateTime, string description, string[] itemName, decimal[] itemCost, decimal[] itemCount)
+        public IActionResult Index(string shopName, DateTime dateTime, string description, string[] itemName, decimal[] itemCost, decimal[] itemCount, string[] itemsDiscount)
         {
             Shop shop = db.Shops.FirstOrDefault(i=>i.Name==shopName);
             if(shop==null)
@@ -43,7 +43,9 @@ namespace Accounting_server.Controllers
                     db.Items.Add(item);
                 }
 
-                Price price = new Price{Date=dateTime, Discount=false, Cost=itemCost[i], Shop=shop, Item=item};
+                bool discount = itemsDiscount.Contains(item.Name);
+
+                Price price = new Price{Date=dateTime, Discount=discount, Cost=itemCost[i], Shop=shop, Item=item};
                 db.Prices.Add(price);
 
                 PurchaseItem purchaseItem = new PurchaseItem{Purchase=purchase, Item=item, Price=price, Count=itemCount[i]};
