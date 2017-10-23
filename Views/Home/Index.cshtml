@@ -44,13 +44,17 @@
     <script id="purchase-template" type="text/x-kendo-template">
     <div>
         <input required class="items" name="itemName" />
-         <input required name="itemCost" placeholder="Цена" type="number"/>
+         <input required class="itemsCost"name="itemCost" placeholder="Цена" type="number"/>
          <input required name="itemCount" placeholder="Количество" type="number"/>
            <button type="button" class="buttonRemove" onclick="removeItem(this)">Удалить</button>
           </br>
            
           </div>
         <script>
+            $(".itemsCost:last").kendoNumericTextBox({
+                        format: "c",
+                        decimals: 3
+                    });
          $(".items:last").kendoAutoComplete({
                         dataSource: {
                             transport: {
